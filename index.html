@@ -106,9 +106,14 @@
     </style>
   </head>
   <body>
+    <nav class="topbar" aria-label="Navegación principal">
+      <a class="brand" href="#inicio">Git <span>·</span> Taller</a>
+      <a href="#practica">Practicá</a>
+    </nav>
     <header class="hero">
       <div class="hero__content">
-        <div class="git-mark" aria-hidden="true"><span>G</span></div>
+        <p class="eyebrow">Control de versiones · desde cero</p>
+        <div id="inicio" class="git-mark" aria-hidden="true"><span>G</span></div>
         <h1>Git te da control.</h1>
         <p>Guardá la historia de tu proyecto, experimentá sin miedo y colaborá sin pisar el trabajo de tu equipo.</p>
         <a href="#conceptos">Conocer los conceptos</a>
@@ -149,8 +154,19 @@
           <div class="step"><code>git push</code><br />Compartí trabajo</div>
         </div>
       </section>
+
+      <section id="practica" class="practice" aria-labelledby="practice-title">
+        <div>
+          <p class="eyebrow">Tu primer registro</p>
+          <h2 id="practice-title">Probalo en tres comandos.</h2>
+          <p>Un commit no es magia: es una decisión explícita de guardar una versión de tu trabajo.</p>
+        </div>
+        <pre aria-label="Comandos básicos de Git"><code>git add index.html
+git commit -m "feat: create page"
+git push origin main</code></pre>
+      </section>
     </main>
 
-    <footer>Git no reemplaza el criterio: hace visible la historia de tus decisiones.</footer>
+    <footer><strong>Git no reemplaza el criterio.</strong> Hace visible la historia de tus decisiones.</footer>
   </body>
 </html>
