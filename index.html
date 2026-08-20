@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Una introducción visual y breve a Git y sus conceptos fundamentales."
+    />
+    <title>Git: control para tus proyectos</title>
+    <style>
+      :root {
+        --ink: #102a43;
+        --muted: #627d98;
+        --paper: #f7fafc;
+        --accent: #f1502f;
+        --accent-dark: #c73d22;
+        --line: #d9e2ec;
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--paper);
+      }
+
+      .hero {
+        min-height: 62vh;
+        display: grid;
+        place-items: center;
+        padding: 5rem 1.5rem;
+        overflow: hidden;
+        color: white;
+        text-align: center;
+        background: linear-gradient(135deg, #102a43, #243b53 58%, #334e68);
+      }
+
+      .hero__content { max-width: 760px; animation: rise 700ms ease-out both; }
+
+      .git-mark {
+        display: grid;
+        place-items: center;
+        width: 74px;
+        height: 74px;
+        margin: 0 auto 1.5rem;
+        border-radius: 17px;
+        background: var(--accent);
+        font-size: 2.3rem;
+        font-weight: 800;
+        transform: rotate(45deg);
+        box-shadow: 0 16px 32px rgb(0 0 0 / 22%);
+        animation: spin-in 750ms 150ms cubic-bezier(.2, .9, .2, 1) both;
+      }
+
+      .git-mark span { transform: rotate(-45deg); }
+
+      h1 { margin: 0; font-size: clamp(2.6rem, 7vw, 5.3rem); letter-spacing: -0.06em; }
+      .hero p { max-width: 610px; margin: 1.25rem auto 0; color: #d9e2ec; font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.65; }
+      .hero a { display: inline-block; margin-top: 2rem; padding: .8rem 1.25rem; border-radius: 999px; color: white; background: var(--accent); text-decoration: none; font-weight: 700; transition: transform 180ms ease, background 180ms ease; }
+      .hero a:hover, .hero a:focus-visible { background: var(--accent-dark); transform: translateY(-3px); }
+
+      main { width: min(1060px, calc(100% - 3rem)); margin: 0 auto; padding: 5rem 0; }
+      .intro { max-width: 680px; margin-bottom: 2.5rem; animation: fade-in 700ms 300ms ease-out both; }
+      h2 { margin: 0 0 .7rem; font-size: clamp(1.8rem, 4vw, 2.7rem); letter-spacing: -.04em; }
+      .intro p, .card p { color: var(--muted); line-height: 1.65; }
+
+      .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+      .card { padding: 1.6rem; border: 1px solid var(--line); border-radius: 16px; background: white; box-shadow: 0 10px 24px rgb(16 42 67 / 5%); transition: transform 220ms ease, box-shadow 220ms ease; animation: rise 600ms ease-out both; }
+      .card:nth-child(2) { animation-delay: 120ms; }
+      .card:nth-child(3) { animation-delay: 240ms; }
+      .card:hover { transform: translateY(-7px); box-shadow: 0 17px 30px rgb(16 42 67 / 12%); }
+      .card__number { display: inline-grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; color: white; background: var(--accent); font-weight: 800; }
+      .card h3 { margin: 1rem 0 .4rem; font-size: 1.25rem; }
+      .card p { margin: 0; }
+
+      .flow { margin-top: 5rem; padding: 2rem; border-radius: 18px; color: white; background: #243b53; }
+      .flow h2 { text-align: center; }
+      .steps { display: flex; align-items: center; justify-content: center; gap: .8rem; margin-top: 2rem; }
+      .step { min-width: 126px; padding: 1rem; border-radius: 11px; text-align: center; background: #334e68; animation: pulse 2.4s ease-in-out infinite; }
+      .step:nth-child(3) { animation-delay: .35s; }
+      .step:nth-child(5) { animation-delay: .7s; }
+      .arrow { color: #f9c7bb; font-size: 1.5rem; }
+      code { color: #ffb3a2; font-weight: 700; }
+      footer { padding: 2rem; color: var(--muted); text-align: center; }
+
+      @keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes spin-in { from { opacity: 0; transform: rotate(-80deg) scale(.4); } to { opacity: 1; transform: rotate(45deg) scale(1); } }
+      @keyframes pulse { 0%, 100% { transform: scale(1); background: #334e68; } 50% { transform: scale(1.045); background: #486581; } }
+
+      @media (max-width: 700px) {
+        .cards { grid-template-columns: 1fr; }
+        .steps { flex-direction: column; }
+        .arrow { transform: rotate(90deg); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__content">
+        <div class="git-mark" aria-hidden="true"><span>G</span></div>
+        <h1>Git te da control.</h1>
+        <p>Guardá la historia de tu proyecto, experimentá sin miedo y colaborá sin pisar el trabajo de tu equipo.</p>
+        <a href="#conceptos">Conocer los conceptos</a>
+      </div>
+    </header>
+
+    <main>
+      <section id="conceptos" class="intro" aria-labelledby="conceptos-title">
+        <h2 id="conceptos-title">La idea detrás de Git</h2>
+        <p>Git es un sistema de control de versiones distribuido. Cada cambio queda registrado y podés volver a una versión anterior cuando lo necesites.</p>
+      </section>
+
+      <section class="cards" aria-label="Conceptos fundamentales de Git">
+        <article class="card">
+          <span class="card__number">1</span>
+          <h3>Commit</h3>
+          <p>Una fotografía con nombre de los cambios que querés conservar en la historia.</p>
+        </article>
+        <article class="card">
+          <span class="card__number">2</span>
+          <h3>Branch</h3>
+          <p>Una línea de trabajo independiente para crear una funcionalidad o probar una idea.</p>
+        </article>
+        <article class="card">
+          <span class="card__number">3</span>
+          <h3>Merge</h3>
+          <p>La unión de una rama con otra para incorporar el trabajo terminado al proyecto principal.</p>
+        </article>
+      </section>
+
+      <section class="flow" aria-labelledby="flow-title">
+        <h2 id="flow-title">Un flujo simple</h2>
+        <div class="steps">
+          <div class="step"><code>git add</code><br />Prepará cambios</div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="step"><code>git commit</code><br />Guardá historia</div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="step"><code>git push</code><br />Compartí trabajo</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>Git no reemplaza el criterio: hace visible la historia de tus decisiones.</footer>
+  </body>
+</html>
