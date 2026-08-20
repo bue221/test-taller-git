@@ -3,13 +3,50 @@
 :root {
   --accent: #e34c26;
   --accent-dark: #b9381c;
+  --navy: #102a43;
 }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1060px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 1.1rem 0;
+  font-size: 0.95rem;
+}
+
+.topbar a {
+  color: var(--navy);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.topbar a:last-child {
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  color: var(--accent-dark);
+  background: #fff0ed;
+}
+
+.brand span { color: var(--accent); }
 
 .hero {
   background:
     radial-gradient(circle at 80% 20%, rgb(241 80 47 / 28%), transparent 28%),
     linear-gradient(135deg, #102a43, #243b53 58%, #334e68);
 }
+
+.eyebrow {
+  margin: 0 0 0.7rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero .eyebrow { color: #ffb3a2; }
 
 .card {
   border-top: 4px solid transparent;
@@ -27,6 +64,32 @@
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / 7%);
 }
 
+.practice {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  margin-top: 4rem;
+  padding: 2.5rem;
+  border: 1px solid #d9e2ec;
+  border-radius: 18px;
+  background: white;
+}
+
+.practice p:not(.eyebrow) { color: #627d98; line-height: 1.65; }
+
+.practice pre {
+  margin: 0;
+  padding: 1.35rem;
+  overflow-x: auto;
+  border-radius: 12px;
+  color: #f7fafc;
+  background: var(--navy);
+  box-shadow: 0 14px 30px rgb(16 42 67 / 14%);
+}
+
+.practice code { color: inherit; font-size: 0.95rem; line-height: 1.8; }
+
 @media (max-width: 700px) {
   main {
     width: min(100% - 2rem, 1060px);
@@ -35,5 +98,13 @@
 
   .flow {
     padding: 1.5rem 1rem;
+  }
+
+  .topbar { width: min(100% - 2rem, 1060px); }
+
+  .practice {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
   }
 }
